@@ -50,7 +50,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>tZzzz</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>tZzzz's SecretBase</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -143,7 +143,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    590 字
+                    690 字
                   </span>
                 
 
@@ -153,7 +153,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    9
+                    10
                      分钟
                   </span>
                 
@@ -240,6 +240,9 @@ $(<span class="hljs-string">"#sendBtn"</span>).on(<span class="hljs-string">"cli
 	&#125;)
 &#125;)</code></pre>
 
+<p>这里前端如果粘贴板图片过大可能base64数据会非常的长导致后台报错：</p>
+<pre><code class="hljs bash">java.lang.IllegalArgumentException: Request header is too large</code></pre>
+<p>可以设置Tomcat内max-http-header-size属性,springboot项目直接在配置文件内设置。<br>需注意的是若max-http-header-size的值设置过大会引起大量占用内存,要根据实际情况进行设置这个值。</p>
 <h2 id="后台获取base64数据转换图片并保存"><a href="#后台获取base64数据转换图片并保存" class="headerlink" title="后台获取base64数据转换图片并保存"></a>后台获取base64数据转换图片并保存</h2><pre><code class="hljs java"><span class="hljs-comment">//springboot 跨域注解</span>
     <span class="hljs-meta">@CrossOrigin</span>(origins = <span class="hljs-string">"*"</span>)
     <span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"/saveToImgByStr"</span>)
