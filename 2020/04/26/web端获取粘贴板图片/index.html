@@ -143,7 +143,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    690 字
+                    662 字
                   </span>
                 
 
@@ -182,70 +182,68 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="web前端js"><a href="#web前端js" class="headerlink" title="web前端js"></a>web前端js</h2><pre><code class="hljs javaScript">bindPaste();
-<span class="hljs-comment">//绑定粘贴事件</span>
-<span class="hljs-keyword">var</span> base64_str = <span class="hljs-literal">null</span>;
+              <h2 id="web前端js"><a href="#web前端js" class="headerlink" title="web前端js"></a>web前端js</h2><pre><code class="hljs plain">bindPaste();
+&#x2F;&#x2F;绑定粘贴事件
+var base64_str &#x3D; null;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bindPaste</span>(<span class="hljs-params"></span>) </span>&#123;
-	<span class="hljs-comment">//定义变量存储获取的图片内容</span>
-	<span class="hljs-keyword">var</span> blob;
-	<span class="hljs-comment">//获取body对象</span>
-	<span class="hljs-keyword">var</span> body = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">"body"</span>);
-	<span class="hljs-comment">//定义body标签绑定的粘贴事件处理函数</span>
-	<span class="hljs-keyword">var</span> fun = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>&#123;
-		<span class="hljs-comment">//获取clipboardData对象</span>
-		<span class="hljs-keyword">var</span> data = e.clipboardData || <span class="hljs-built_in">window</span>.clipboardData;
-		<span class="hljs-comment">//获取图片内容</span>
-		blob = data.items[<span class="hljs-number">0</span>].getAsFile();
-		<span class="hljs-comment">//判断是不是图片，最好通过文件类型判断</span>
-		<span class="hljs-keyword">var</span> isImg = (blob &amp;&amp; <span class="hljs-number">1</span>) || <span class="hljs-number">-1</span>;
-		<span class="hljs-keyword">var</span> reader = <span class="hljs-keyword">new</span> FileReader();
-		<span class="hljs-comment">//文件读取完成时触发</span>
-		reader.onload = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
-			<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>&#123;
-				<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"获得粘贴的结果"</span>, e.target.result);
-				base64_str = e.target.result;
-				<span class="hljs-comment">//div中的img标签src属性赋值，可以直接展示图片</span>
-				$(<span class="hljs-string">"#screenShoot"</span>).attr(<span class="hljs-string">"src"</span>, base64_str);
-				<span class="hljs-comment">//显示div</span>
-				$(<span class="hljs-string">"#screenShoot"</span>).css(<span class="hljs-string">"display"</span>, <span class="hljs-string">"block"</span>);
+function bindPaste() &#123;
+	&#x2F;&#x2F;定义变量存储获取的图片内容
+	var blob;
+	&#x2F;&#x2F;获取body对象
+	var body &#x3D; document.getElementsByTagName(&quot;body&quot;);
+	&#x2F;&#x2F;定义body标签绑定的粘贴事件处理函数
+	var fun &#x3D; function(e) &#123;
+		&#x2F;&#x2F;获取clipboardData对象
+		var data &#x3D; e.clipboardData || window.clipboardData;
+		&#x2F;&#x2F;获取图片内容
+		blob &#x3D; data.items[0].getAsFile();
+		&#x2F;&#x2F;判断是不是图片，最好通过文件类型判断
+		var isImg &#x3D; (blob &amp;&amp; 1) || -1;
+		var reader &#x3D; new FileReader();
+		&#x2F;&#x2F;文件读取完成时触发
+		reader.onload &#x3D; (function() &#123;
+			return function(e) &#123;
+				console.log(&quot;获得粘贴的结果&quot;, e.target.result);
+				base64_str &#x3D; e.target.result;
+				&#x2F;&#x2F;div中的img标签src属性赋值，可以直接展示图片
+				$(&quot;#screenShoot&quot;).attr(&quot;src&quot;, base64_str);
+				&#x2F;&#x2F;显示div
+				$(&quot;#screenShoot&quot;).css(&quot;display&quot;, &quot;block&quot;);
 			&#125;
 		&#125;)();
-		<span class="hljs-keyword">if</span> (isImg &gt;= <span class="hljs-number">0</span>) &#123;
-			<span class="hljs-comment">//将文件读取为 DataURL</span>
+		if (isImg &gt;&#x3D; 0) &#123;
+			&#x2F;&#x2F;将文件读取为 DataURL
 			reader.readAsDataURL(blob);
 		&#125;
 	&#125;
-	<span class="hljs-comment">//通过body标签绑定粘贴事件，注意有些标签绑定粘贴事件可能出错</span>
-	body[<span class="hljs-number">0</span>].removeEventListener(<span class="hljs-string">'paste'</span>, fun);
-	body[<span class="hljs-number">0</span>].addEventListener(<span class="hljs-string">'paste'</span>, fun);
+	&#x2F;&#x2F;通过body标签绑定粘贴事件，注意有些标签绑定粘贴事件可能出错
+	body[0].removeEventListener(&#39;paste&#39;, fun);
+	body[0].addEventListener(&#39;paste&#39;, fun);
 &#125;
-$(<span class="hljs-string">"#sendBtn"</span>).on(<span class="hljs-string">"click"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+$(&quot;#sendBtn&quot;).on(&quot;click&quot;, function() &#123;
 	$.ajax(&#123;
-		type: <span class="hljs-string">'get'</span>,
-		url: conf.global_url + <span class="hljs-string">"/device/saveToImgByStr"</span>,
+		type: &#39;get&#39;,
+		url: conf.global_url + &quot;&#x2F;device&#x2F;saveToImgByStr&quot;,
 		data: &#123;
 			base64Str: base64_str,
 		&#125;,
-		cache: <span class="hljs-literal">false</span>,
-		<span class="hljs-keyword">async</span>: <span class="hljs-literal">false</span>,
-		dataType: <span class="hljs-string">'json'</span>,
-		contentType: <span class="hljs-string">'application/x-www-form-urlencoded;charset=UTF-8'</span>,
-		success: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">result</span>) </span>&#123;
-			<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"result"</span> + result);
+		cache: false,
+		async: false,
+		dataType: &#39;json&#39;,
+		contentType: &#39;application&#x2F;x-www-form-urlencoded;charset&#x3D;UTF-8&#39;,
+		success: function(result) &#123;
+			console.log(&quot;result&quot; + result);
 		&#125;,
-		error: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">XMLHttpRequest, textStatus, errorThrown</span>) </span>&#123;
-			<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'系统异常！'</span>);
+		error: function(XMLHttpRequest, textStatus, errorThrown) &#123;
+			console.log(&#39;系统异常！&#39;);
 		&#125;
 	&#125;)
 &#125;)</code></pre>
 
-<p>这里前端如果粘贴板图片过大可能base64数据会非常的长导致后台报错：</p>
-<pre><code class="hljs bash">java.lang.IllegalArgumentException: Request header is too large</code></pre>
-<p>可以设置Tomcat内max-http-header-size属性,springboot项目直接在配置文件内设置。<br>需注意的是若max-http-header-size的值设置过大会引起大量占用内存,要根据实际情况进行设置这个值。</p>
+
 <h2 id="后台获取base64数据转换图片并保存"><a href="#后台获取base64数据转换图片并保存" class="headerlink" title="后台获取base64数据转换图片并保存"></a>后台获取base64数据转换图片并保存</h2><pre><code class="hljs java"><span class="hljs-comment">//springboot 跨域注解</span>
     <span class="hljs-meta">@CrossOrigin</span>(origins = <span class="hljs-string">"*"</span>)
-    <span class="hljs-meta">@GetMapping</span>(<span class="hljs-string">"/saveToImgByStr"</span>)
+    <span class="hljs-meta">@PostMapping</span>(<span class="hljs-string">"/saveToImgByStr"</span>)
     <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">saveToImgByStr</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response, String base64Str)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;
         String destDir = <span class="hljs-string">"/upload/image"</span>;
         <span class="hljs-comment">//非springboot项目 可设置请求头解决跨域问题</span>
