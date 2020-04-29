@@ -17,7 +17,7 @@
   <meta name="description" content="secret base">
   <meta name="author" content="yiyun guo">
   <meta name="keywords" content="">
-  <title>日语测试 - tZzzz</title>
+  <title>关于HashMap初始化容量问题 - tZzzz</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -132,8 +132,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-04-23 18:19">
-                    星期四, 四月 23日 2020, 6:19 晚上
+                  <time datetime="2020-04-29 12:00">
+                    星期三, 四月 29日 2020, 12:00 中午
                   </time>
                 </div>
               
@@ -143,7 +143,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    324 字
+                    368 字
                   </span>
                 
 
@@ -153,7 +153,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    5
+                    3
                      分钟
                   </span>
                 
@@ -182,47 +182,17 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>梦(ゆめ)ならばどれほどよかったでしょう</p>
-<p>未(いま)だにあなたのことを梦(ゆめ)にみる</p>
-<p>忘(わす)れた物(もの)を取(と)りに帰(かえ)るように</p>
-<p>古(ふる)びた思(おも)い出(で)の埃(ほこり)を払(はら)う</p>
-<p>戻(もど)らない幸(しあわ)せがあることを</p>
-<p>最後(さいご)にあなたが教(おし)えてくれた</p>
-<p>言(い)えずに隠(かく)してた昏(くら)い过去(かこ)も</p>
-<p>あなたがいなきゃ永远(えいえん)に昏(くら)いまま</p>
-<p>きっともうこれ以上(いじょう) 伤(きず)つくことなど</p>
-<p>ありはしないとわかっている</p>
-<p>あの日(ひ)の悲(かな)しみさえ</p>
-<p>あの日(ひ)の苦(くる)しみさえ</p>
-<p>そのすべてを爱(あい)してた あなたとともに</p>
-<p>胸(むね)に残(のこ)り离(はな)れない</p>
-<p>苦(にが)いレモン(れもん)の匂(にお)い</p>
-<p>雨(あめ)が降(ふ)り止(や)むまでは帰(かえ)れない</p>
-<p>今(いま)でもあなたはわたしの光(ひかり)</p>
-<p>暗闇(くらやみ)であなたの背(せ)をなぞった</p>
-<p>その轮廓(りんかく)を鲜明(せんめい)に覚(おぼ)えている</p>
-<p>受(う)け止(と)めきれないものと出会(であ)うたび</p>
-<p>溢(あふ)れてやまないのは涙(なみだ)だけ</p>
-<p>何(なに)をしていたの</p>
-<p>何(なに)を见(み)ていたの</p>
-<p>わたしの知(し)らない横颜(よこがお)で</p>
-<p>どこかであなたが今(いま)</p>
-<p>わたしと同(おな)じ様(よう)な</p>
-<p>涙(なみだ)にくれ 淋(さび)しさの中(なか)にいるなら</p>
-<p>わたしのことなどどうか 忘(わす)れてください</p>
-<p>そんなことを心(こころ)から愿(ねが)うほどに</p>
-<p>今(いま)でもあなたはわたしの光(ひかり)</p>
-<p>自分(じぶん)が思(おも)うより 恋(こい)をしていたあなたに</p>
-<p>あれから思(おも)うように 息(いき)ができない</p>
-<p>あんなに侧(そば)にいたのにまるで嘘(うそ)みたい</p>
-<p>とても忘(わす)れられないそれだけが确(たし)か</p>
-<p>あの日(ひ)の悲(かな)しみさえ<br>　　あの日(ひ)の苦(くる)しみさえ</p>
-<p>その全(すべ)てを爱(あい)してたあなたと共(とも)に</p>
-<p>胸(むね)に残(のこ)り离(はな)れない</p>
-<p>苦(にが)いレモン(れもん)の匂(にお)い</p>
-<p>雨(あめ)が降(ふ)り止(や)むまでは帰(かえ)れない</p>
-<p>切(き)り分(わ)けた果実(かじつ)の片方(かたほう)の様(よう)に</p>
-<p>今(いま)でもあなたはわたしの光(ひかり)。</p>
+              <p>##关于jdk内描述<br>HashMap的实例有两个参数影响其性能：初始容量和加载因子。</p>
+<p>首先我们来看初始容量和加载因子的定义。</p>
+<p>容量是哈希表中桶的数量，初始容量只是哈希表在创建时的容量。</p>
+<p>加载因子是哈希表在其容量自动增加之前可以达到多满的一种尺度。</p>
+<p>当哈希表中条目的数目超过 容量乘加载因子 的时候，则要对该哈希表进行rehash操作，从而哈希表将具有大约两倍的桶数。</p>
+<p>当我们往hashmap中put元素的时候，先根据key的hash值得到这个元素在数组中的位置（即下标），<br>然后就可以把这个元素放到对应的位置中了。如果这个元素所在的位子上已经存放有其他元素了，<br>那么在同一个位子上的元素将以链表的形式存放，新加入的放在链头，最先加入的放在链尾。<br>从hashmap中get元素时，首先计算key的hashcode，找到数组中对应位置的某一元素，<br>然后通过key的equals方法在对应位置的链表中找到需要的元素。如果每个位置上的链表只有一个元素，那么hashmap的get效率将是最高的。<br>##HashMap为元素选择下标的方法</p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">indexFor</span><span class="hljs-params">(<span class="hljs-keyword">int</span> h, <span class="hljs-keyword">int</span> length)</span> </span>&#123;  
+       <span class="hljs-keyword">return</span> h &amp; (length-<span class="hljs-number">1</span>);  
+   &#125; </code></pre>
+
+<p>待补充</p>
 
             </article>
             <hr>
@@ -233,9 +203,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/lemon%E6%AD%8C%E8%AF%8D/">lemon歌词</a>
+                      <a class="hover-with-bg" href="/tags/java/">java</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%97%A5%E8%AF%AD/">日语</a>
+                      <a class="hover-with-bg" href="/tags/hashmap/">hashmap</a>
                     
                   </div>
                 
@@ -248,18 +218,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/04/26/web%E7%AB%AF%E8%8E%B7%E5%8F%96%E7%B2%98%E8%B4%B4%E6%9D%BF%E5%9B%BE%E7%89%87/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">web前端获取粘贴板图片</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/04/23/%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95/">
-                        <span class="hidden-mobile">中文测试</span>
+                      <a href="/2020/04/26/web%E7%AB%AF%E8%8E%B7%E5%8F%96%E7%B2%98%E8%B4%B4%E6%9D%BF%E5%9B%BE%E7%89%87/">
+                        <span class="hidden-mobile">web前端获取粘贴板图片</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -399,7 +363,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "日语测试&nbsp;",
+        "关于HashMap初始化容量问题&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
