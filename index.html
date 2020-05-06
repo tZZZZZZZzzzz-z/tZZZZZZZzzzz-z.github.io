@@ -119,7 +119,7 @@
 </nav>
 
     <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/post-bg.jpg') no-repeat center center;
+         style="background: url('/img/bg.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -170,12 +170,12 @@
         
           
         
-        <div>关于jdk内描述HashMap的实例有两个参数影响其性能：初始容量和加载因子。
+        <div>基于阿里代码规范HashMap 需要初始化大小问题了解了一波
+关于jdk内描述HashMap的实例有两个参数影响其性能：初始容量和加载因子。
 首先我们来看初始容量和加载因子的定义。
 容量是哈希表中桶的数量，初始容量只是哈希表在创建时的容量。
 加载因子是哈希表在其容量自动增加之前可以达到多满的一种尺度。
-当哈希表中条目的数目超过 容量乘加载因子 的时候，则要对该哈希表进行rehash操作，从而哈希表将具有大约两倍的桶数。
-当我们往hashmap中put元素的时</div>
+当哈希表中条目的数目超过 容量乘加载因子 的时候，则要对该哈希表进行rehash操作，从而哈希表</div>
       </a>
 
       <div class="index-btm post-metas">
@@ -401,7 +401,7 @@ function bindPaste() &#123;
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "今天你开心吗&nbsp;",
+        "Think Different&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
