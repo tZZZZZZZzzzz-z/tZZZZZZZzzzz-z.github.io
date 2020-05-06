@@ -143,7 +143,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    367 字
+                    733 字
                   </span>
                 
 
@@ -153,7 +153,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    3
+                    7
                      分钟
                   </span>
                 
@@ -192,7 +192,14 @@
        <span class="hljs-keyword">return</span> h &amp; (length-<span class="hljs-number">1</span>);  
    &#125; </code></pre>
 
-<p>待补充</p>
+<p>当数组长度为2的n次幂的时候，不同的key算得得index相同的几率较小，那么数据在数组上分布就比较均匀，也就是说碰撞的几率小，相对的，查询的时候就不用遍历某个位置上的链表，这样查询效率也就较高了。</p>
+<p>所以，在存储大容量数据的时候，最好预先指定hashmap的size为2的整数次幂次方。就算不指定的话，也会以大于且最接近指定值大小的2次幂来初始化的，代码如下(HashMap的构造方法中)：</p>
+<pre><code class="hljs java"><span class="hljs-comment">// Find a power of 2 &gt;= initialCapacity  </span>
+        <span class="hljs-keyword">int</span> capacity = <span class="hljs-number">1</span>;  
+        <span class="hljs-keyword">while</span> (capacity &lt; initialCapacity)   
+            capacity &lt;&lt;= <span class="hljs-number">1</span>;  </code></pre>
+
+<h2 id="关于HashMap的rehash"><a href="#关于HashMap的rehash" class="headerlink" title="关于HashMap的rehash"></a>关于HashMap的rehash</h2><p>当元素个数超过数组长度*加载因子时，HashMap将发生扩容，使其提高查询效率，但当其扩容后，原数组中的数据必须重新计算其在新数组中的位置，并放进去，这是一个导致消耗性能的操作，所以如果我们已经预知hashmap中元素的个数，那么预设元素的个数能够有效的提高hashmap的性能。比如说，我们有100个元素,100/0.75 = 133.33。为了防止rehash，向上取整，为134  但是new HashMap(134)显然不符合数组长度为2的n次幂的时候效率更高，  我们必须这样new HashMap(256)才最合适，既考虑了&amp;的问题，也避免了rehash的问题。</p>
 
             </article>
             <hr>
