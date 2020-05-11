@@ -17,7 +17,7 @@
   <meta name="description" content="secret base">
   <meta name="author" content="yiyun guo">
   <meta name="keywords" content="">
-  <title>关于HashMap初始化容量问题 - tZzzz</title>
+  <title>关于视频通话截图 - tZzzz</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -123,8 +123,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-04-29 12:00">
-                    星期三, 四月 29日 2020, 12:00 中午
+                  <time datetime="2020-05-06 14:35">
+                    星期三, 五月 6日 2020, 2:35 下午
                   </time>
                 </div>
               
@@ -134,7 +134,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    756 字
+                    249 字
                   </span>
                 
 
@@ -144,7 +144,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    8
+                    3
                      分钟
                   </span>
                 
@@ -173,26 +173,33 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>基于阿里代码规范HashMap 需要初始化大小问题了解了一波</p>
-<h2 id="关于jdk内描述"><a href="#关于jdk内描述" class="headerlink" title="关于jdk内描述"></a>关于jdk内描述</h2><p>HashMap的实例有两个参数影响其性能：初始容量和加载因子。</p>
-<p>首先我们来看初始容量和加载因子的定义。</p>
-<p>容量是哈希表中桶的数量，初始容量只是哈希表在创建时的容量。</p>
-<p>加载因子是哈希表在其容量自动增加之前可以达到多满的一种尺度。</p>
-<p>当哈希表中条目的数目超过 容量乘加载因子 的时候，则要对该哈希表进行rehash操作，从而哈希表将具有大约两倍的桶数。</p>
-<p>当我们往hashmap中put元素的时候，先根据key的hash值得到这个元素在数组中的位置（即下标），然后就可以把这个元素放到对应的位置中了。如果这个元素所在的位子上已经存放有其他元素了，那么在同一个位子上的元素将以链表的形式存放，新加入的放在链头，最先加入的放在链尾。从hashmap中get元素时，首先计算key的hashcode，找到数组中对应位置的某一元素，然后通过key的equals方法在对应位置的链表中找到需要的元素。如果每个位置上的链表只有一个元素，那么hashmap的get效率将是最高的。</p>
-<h2 id="HashMap为元素选择下标的方法"><a href="#HashMap为元素选择下标的方法" class="headerlink" title="HashMap为元素选择下标的方法"></a>HashMap为元素选择下标的方法</h2><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">indexFor</span><span class="hljs-params">(<span class="hljs-keyword">int</span> h, <span class="hljs-keyword">int</span> length)</span> </span>&#123;  
-       <span class="hljs-keyword">return</span> h &amp; (length-<span class="hljs-number">1</span>);  
-   &#125; </code></pre>
-
-<p>当数组长度为2的n次幂的时候，不同的key算得得index相同的几率较小，那么数据在数组上分布就比较均匀，也就是说碰撞的几率小，相对的，查询的时候就不用遍历某个位置上的链表，这样查询效率也就较高了。</p>
-<p>所以，在存储大容量数据的时候，最好预先指定hashmap的size为2的整数次幂次方。就算不指定的话，也会以大于且最接近指定值大小的2次幂来初始化的，代码如下(HashMap的构造方法中)：</p>
-<pre><code class="hljs java"><span class="hljs-comment">// Find a power of 2 &gt;= initialCapacity  </span>
-        <span class="hljs-keyword">int</span> capacity = <span class="hljs-number">1</span>;  
-        <span class="hljs-keyword">while</span> (capacity &lt; initialCapacity)   
-            capacity &lt;&lt;= <span class="hljs-number">1</span>;  </code></pre>
-
-<h2 id="关于HashMap的rehash"><a href="#关于HashMap的rehash" class="headerlink" title="关于HashMap的rehash"></a>关于HashMap的rehash</h2><p>当元素个数超过数组长度*加载因子时，HashMap将发生扩容，使其提高查询效率，但当其扩容后，原数组中的数据必须重新计算其在新数组中的位置，并放进去，这是一个导致消耗性能的操作，所以如果我们已经预知hashmap中元素的个数，那么预设元素的个数能够有效的提高hashmap的性能。比如说，我们有100个元素,100/0.75 = 133.33。为了防止rehash，向上取整，为134  但是new HashMap(134)显然不符合数组长度为2的n次幂的时候效率更高，  我们必须这样new HashMap(256)才最合适，既考虑了&amp;的问题，也避免了rehash的问题。</p>
-
+              <p>最近有个需求需要截取视频通话的客户界面传给后台做业务处理，百度了一下最多的都是html2canvas。</p>
+<p>html2canvas  其实是遍历dom元素 将html内容渲染成canvas图片。</p>
+<p>当我选取video标签时发现 渲染出来的只有一张白色的图片，才知道视频并不能直接渲染成图片。百度一番，发现解决方案都是将视频当前帧渲染成canvas图片，直接上代码吧。</p>
+<pre><code class="hljs javaScript"><span class="hljs-comment">//将视频通话当前帧画入canvas画布</span>
+<span class="hljs-keyword">let</span> video = $(<span class="hljs-string">"#remote_stream"</span>).find(<span class="hljs-string">"video"</span>)[<span class="hljs-number">0</span>];
+			video.style.backgroundImage = <span class="hljs-string">""</span>;
+			<span class="hljs-keyword">if</span> (video.style.backgroundImage == <span class="hljs-string">""</span>) &#123;
+				<span class="hljs-keyword">let</span> width = $(video).width();
+				<span class="hljs-keyword">let</span> height = $(video).height();
+				$(video).after(<span class="hljs-string">'&lt;canvas width="'</span> + width + <span class="hljs-string">'" height="'</span> + height + <span class="hljs-string">'"&gt;&lt;/canvas&gt;'</span>);
+				<span class="hljs-keyword">let</span> canvas = $(video).next(<span class="hljs-string">'canvas'</span>).css(&#123;
+					display: <span class="hljs-string">'none'</span>
+				&#125;);
+				<span class="hljs-keyword">let</span> ctx = canvas.get(<span class="hljs-number">0</span>).getContext(<span class="hljs-string">'2d'</span>);
+				ctx.drawImage(video, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, width, height);
+				<span class="hljs-keyword">try</span> &#123;
+					video.style.backgroundImage = <span class="hljs-string">"url("</span> + canvas.get(<span class="hljs-number">0</span>).toDataURL(<span class="hljs-string">'image/png'</span>) + <span class="hljs-string">")"</span>;
+				&#125; <span class="hljs-keyword">catch</span> (e) &#123;
+					<span class="hljs-built_in">console</span>.log(e)
+				&#125; <span class="hljs-keyword">finally</span> &#123;
+					canvas.remove();
+				&#125;
+			&#125;
+			<span class="hljs-comment">//html2canvas根据video标签渲染截图</span>
+			html2canvas($(<span class="hljs-string">"#remote_stream"</span>).find(<span class="hljs-string">"video"</span>)[<span class="hljs-number">0</span>]).then(<span class="hljs-function"><span class="hljs-params">canvas</span> =&gt;</span> &#123;
+				base64Str = canvas.toDataURL(<span class="hljs-string">'image/jpeg'</span>, <span class="hljs-number">1.0</span>);
+			&#125;);</code></pre>
             </article>
             <hr>
             <div>
@@ -202,9 +209,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/java/">java</a>
+                      <a class="hover-with-bg" href="/tags/html2canvas/">html2canvas</a>
                     
-                      <a class="hover-with-bg" href="/tags/hashmap/">hashmap</a>
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
                     
                   </div>
                 
@@ -217,18 +224,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/05/06/%E5%85%B3%E4%BA%8E%E8%A7%86%E9%A2%91%E9%80%9A%E8%AF%9D%E6%88%AA%E5%9B%BE/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">关于视频通话截图</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/04/26/web%E7%AB%AF%E8%8E%B7%E5%8F%96%E7%B2%98%E8%B4%B4%E6%9D%BF%E5%9B%BE%E7%89%87/">
-                        <span class="hidden-mobile">web前端获取粘贴板图片</span>
+                      <a href="/2020/04/29/%E5%85%B3%E4%BA%8EHashMap%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AE%B9%E9%87%8F%E9%97%AE%E9%A2%98/">
+                        <span class="hidden-mobile">关于HashMap初始化容量问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -368,7 +369,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "关于HashMap初始化容量问题&nbsp;",
+        "关于视频通话截图&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
