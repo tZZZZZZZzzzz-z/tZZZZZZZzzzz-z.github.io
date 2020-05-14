@@ -174,9 +174,9 @@
             
             <article class="markdown-body">
               <h2 id="Collectors"><a href="#Collectors" class="headerlink" title="Collectors"></a>Collectors</h2><p>Collectors 是 Java 8 加入的操作类，位于 java.util.stream 包下。它会根据不同的策略将元素收集归纳起来，比如最简单常用的是将元素装入Map、Set、List 等可变容器中。特别对于 Java 8 Stream Api 来说非常有用。它提供了collect() 方法来对 Stream 流进行终结操作派生出基于各种策略的结果集。</p>
-<pre><code class="hljs java">List&lt;String&gt; language1 = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
-        language1.add(<span class="hljs-string">"Java"</span>);
-        language1.add(<span class="hljs-string">"PHP"</span>);
+<pre><code class="hljs java">List&lt;String&gt; language = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        language.add(<span class="hljs-string">"Java"</span>);
+        language.add(<span class="hljs-string">"PHP"</span>);
         language.add(<span class="hljs-string">"Python"</span>);
         language.add(<span class="hljs-string">"Go"</span>);
         language.add(<span class="hljs-string">"C#"</span>);</code></pre>
