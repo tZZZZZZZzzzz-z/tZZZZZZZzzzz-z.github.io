@@ -17,7 +17,7 @@
   <meta name="description" content="secret base">
   <meta name="author" content="yiyun guo">
   <meta name="keywords" content="">
-  <title>日语测试 - tZzzz</title>
+  <title>Java 8 stream Collectors 操作 - tZzzz</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -123,8 +123,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-04-23 18:19">
-                    星期四, 四月 23日 2020, 6:19 晚上
+                  <time datetime="2020-04-25 14:47">
+                    星期六, 四月 25日 2020, 2:47 下午
                   </time>
                 </div>
               
@@ -134,7 +134,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    324 字
+                    605 字
                   </span>
                 
 
@@ -144,7 +144,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    5
+                    8
                      分钟
                   </span>
                 
@@ -173,47 +173,57 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>梦(ゆめ)ならばどれほどよかったでしょう</p>
-<p>未(いま)だにあなたのことを梦(ゆめ)にみる</p>
-<p>忘(わす)れた物(もの)を取(と)りに帰(かえ)るように</p>
-<p>古(ふる)びた思(おも)い出(で)の埃(ほこり)を払(はら)う</p>
-<p>戻(もど)らない幸(しあわ)せがあることを</p>
-<p>最後(さいご)にあなたが教(おし)えてくれた</p>
-<p>言(い)えずに隠(かく)してた昏(くら)い过去(かこ)も</p>
-<p>あなたがいなきゃ永远(えいえん)に昏(くら)いまま</p>
-<p>きっともうこれ以上(いじょう) 伤(きず)つくことなど</p>
-<p>ありはしないとわかっている</p>
-<p>あの日(ひ)の悲(かな)しみさえ</p>
-<p>あの日(ひ)の苦(くる)しみさえ</p>
-<p>そのすべてを爱(あい)してた あなたとともに</p>
-<p>胸(むね)に残(のこ)り离(はな)れない</p>
-<p>苦(にが)いレモン(れもん)の匂(にお)い</p>
-<p>雨(あめ)が降(ふ)り止(や)むまでは帰(かえ)れない</p>
-<p>今(いま)でもあなたはわたしの光(ひかり)</p>
-<p>暗闇(くらやみ)であなたの背(せ)をなぞった</p>
-<p>その轮廓(りんかく)を鲜明(せんめい)に覚(おぼ)えている</p>
-<p>受(う)け止(と)めきれないものと出会(であ)うたび</p>
-<p>溢(あふ)れてやまないのは涙(なみだ)だけ</p>
-<p>何(なに)をしていたの</p>
-<p>何(なに)を见(み)ていたの</p>
-<p>わたしの知(し)らない横颜(よこがお)で</p>
-<p>どこかであなたが今(いま)</p>
-<p>わたしと同(おな)じ様(よう)な</p>
-<p>涙(なみだ)にくれ 淋(さび)しさの中(なか)にいるなら</p>
-<p>わたしのことなどどうか 忘(わす)れてください</p>
-<p>そんなことを心(こころ)から愿(ねが)うほどに</p>
-<p>今(いま)でもあなたはわたしの光(ひかり)</p>
-<p>自分(じぶん)が思(おも)うより 恋(こい)をしていたあなたに</p>
-<p>あれから思(おも)うように 息(いき)ができない</p>
-<p>あんなに侧(そば)にいたのにまるで嘘(うそ)みたい</p>
-<p>とても忘(わす)れられないそれだけが确(たし)か</p>
-<p>あの日(ひ)の悲(かな)しみさえ<br>　　あの日(ひ)の苦(くる)しみさえ</p>
-<p>その全(すべ)てを爱(あい)してたあなたと共(とも)に</p>
-<p>胸(むね)に残(のこ)り离(はな)れない</p>
-<p>苦(にが)いレモン(れもん)の匂(にお)い</p>
-<p>雨(あめ)が降(ふ)り止(や)むまでは帰(かえ)れない</p>
-<p>切(き)り分(わ)けた果実(かじつ)の片方(かたほう)の様(よう)に</p>
-<p>今(いま)でもあなたはわたしの光(ひかり)。</p>
+              <h2 id="Collectors"><a href="#Collectors" class="headerlink" title="Collectors"></a>Collectors</h2><p>Collectors 是 Java 8 加入的操作类，位于 java.util.stream 包下。它会根据不同的策略将元素收集归纳起来，比如最简单常用的是将元素装入Map、Set、List 等可变容器中。特别对于 Java 8 Stream Api 来说非常有用。它提供了collect() 方法来对 Stream 流进行终结操作派生出基于各种策略的结果集。</p>
+<pre><code class="hljs java">List&lt;String&gt; language1 = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        language1.add(<span class="hljs-string">"Java"</span>);
+        language1.add(<span class="hljs-string">"PHP"</span>);
+        language.add(<span class="hljs-string">"Python"</span>);
+        language.add(<span class="hljs-string">"Go"</span>);
+        language.add(<span class="hljs-string">"C#"</span>);</code></pre>
+
+<h2 id="Java-8-中-Collectors-的方法"><a href="#Java-8-中-Collectors-的方法" class="headerlink" title="Java 8 中 Collectors 的方法"></a>Java 8 中 Collectors 的方法</h2><p>Collectors 提供了一系列的静态方法供我们使用，通常情况我们静态导入即可使用。</p>
+<pre><code class="hljs java">Collectors.toList();
+  Collectors.toMap();
+  Collectors.toSet();
+  Collectors.toCollection();
+  Collectors.toConcurrentMap();</code></pre>
+
+<h2 id="joining"><a href="#joining" class="headerlink" title="joining"></a>joining</h2><p>将元素以某种规则连接起来。该方法有两种种重载 joining(CharSequence delimiter) 和 joining(CharSequence delimiter,CharSequence prefix,CharSequence suffix)</p>
+<pre><code class="hljs java"><span class="hljs-comment">//   输出 JavaPHPPythonGoC#</span>
+ language.stream().collect(Collectors.joining());
+
+ <span class="hljs-comment">//   输出 Java,PHP,Python,Go,C#</span>
+ language.stream().collect(Collectors.joining(<span class="hljs-string">","</span> ));
+
+ <span class="hljs-comment">//   输出 [Java,PHP,Python,Go,C#]</span>
+ language.stream().collect(Collectors.joining(<span class="hljs-string">","</span>, <span class="hljs-string">"["</span>, <span class="hljs-string">"]"</span>));</code></pre>
+
+<h2 id="collectingAndThen"><a href="#collectingAndThen" class="headerlink" title="collectingAndThen"></a>collectingAndThen</h2><p>该方法先执行了一个归纳操作，然后再对归纳的结果进行 Function 函数处理输出一个新的结果。</p>
+<pre><code class="hljs java"><span class="hljs-comment">//   先进行了joining操作再转为大写 输出为 JAVA,PHP,PYTHON,GO,C#</span>
+language.stream().collect(Collectors.collectingAndThen(Collectors.joining(<span class="hljs-string">","</span>), String::toUpperCase));</code></pre>
+
+<h2 id="groupingBy"><a href="#groupingBy" class="headerlink" title="groupingBy"></a>groupingBy</h2><p>按照条件对元素进行分组</p>
+<pre><code class="hljs java"><span class="hljs-comment">// 按照字符串长度进行分组，符合条件的元素将组成一个 List 映射到以条件长度为key 的 Map&lt;Integer, List&lt;String&gt;&gt; 中</span>
+ language.stream().collect(Collectors.groupingBy(String::length))</code></pre>
+
+<h2 id="counting"><a href="#counting" class="headerlink" title="counting"></a>counting</h2><p>归纳元素的的数量</p>
+<pre><code class="hljs java"><span class="hljs-comment">// 输出 5</span>
+ language.stream().collect(Collectors.counting())</code></pre>
+
+<h2 id="maxBy-minBy"><a href="#maxBy-minBy" class="headerlink" title="maxBy/minBy"></a>maxBy/minBy</h2><p>这两个方法分别提供了查找大小元素的操作，它们基于比较器接口 Comparator 来比较 ，返回的是一个 Optional 对象。</p>
+<pre><code class="hljs java"><span class="hljs-comment">// 输出 Go</span>
+Optional&lt;String&gt; min = language.stream().collect(Collectors.minBy(Comparator.comparingInt(String::length)));</code></pre>
+
+<h2 id="summingInt-Double-Long"><a href="#summingInt-Double-Long" class="headerlink" title="summingInt/Double/Long"></a>summingInt/Double/Long</h2><p>用来做累加计算。计算元素某个属性的总和,类似 Mysql 的 sum 函数</p>
+<pre><code class="hljs java"><span class="hljs-comment">// 总长度17</span>
+ language.stream().collect(Collectors.summingInt(l -&gt; l.length()));</code></pre>
+
+<h2 id="summarizingInt-Double-Long"><a href="#summarizingInt-Double-Long" class="headerlink" title="summarizingInt/Double/Long"></a>summarizingInt/Double/Long</h2><p>如果我们总数,总和,最大最小值这些都要呢，summarizingInt、summarizingDouble、summarizingLong这三个方法通过对元素某个属性的提取，会返回对元素该属性的统计数据对象，分别对应 IntSummaryStatistics、DoubleSummaryStatistics、LongSummaryStatistics。 </p>
+<pre><code class="hljs java">DoubleSummaryStatistics doubleSummaryStatistics = language.stream().collect(Collectors.summarizingDouble(String::length));
+  <span class="hljs-comment">// DoubleSummaryStatistics&#123;count=5, sum=17.000000, min=2.000000, average=3.400000, max=6.000000&#125;</span>
+  System.out.println(doubleSummaryStatistics.toString());</code></pre>
+
+<p>结果 DoubleSummaryStatistics 中包含了 总数，总和，最小值，最大值，平均值 五个值</p>
 
             </article>
             <hr>
@@ -224,9 +234,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/lemon%E6%AD%8C%E8%AF%8D/">lemon歌词</a>
+                      <a class="hover-with-bg" href="/tags/java/">java</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%97%A5%E8%AF%AD/">日语</a>
+                      <a class="hover-with-bg" href="/tags/stream/">stream</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Collectors/">Collectors</a>
                     
                   </div>
                 
@@ -239,9 +251,9 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/04/25/java8stream/">
+                      <a href="/2020/04/26/web%E7%AB%AF%E8%8E%B7%E5%8F%96%E7%B2%98%E8%B4%B4%E6%9D%BF%E5%9B%BE%E7%89%87/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java 8 stream Collectors 操作</span>
+                        <span class="hidden-mobile">web前端获取粘贴板图片</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -249,8 +261,8 @@
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/04/23/%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95/">
-                        <span class="hidden-mobile">中文测试</span>
+                      <a href="/2020/04/23/%E6%97%A5%E8%AF%AD%E6%B5%8B%E8%AF%95/">
+                        <span class="hidden-mobile">日语测试</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -390,7 +402,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "日语测试&nbsp;",
+        "Java 8 stream Collectors 操作&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
