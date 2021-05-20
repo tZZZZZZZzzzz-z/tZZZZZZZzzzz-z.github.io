@@ -18,9 +18,25 @@
   <meta name="author" content="yiyun guo">
   <meta name="keywords" content="">
   
-  <title>标签 - tZzzz</title>
+  <title>关于视频通话截图 - tZzzz</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.6.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -48,7 +64,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -147,17 +163,50 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="标签">
+            <span class="h2" id="subtitle" title="关于视频通话截图">
               
             </span>
 
             
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-05-06 14:35" pubdate>
+        2020年5月6日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      254 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      3
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
           </div>
 
-          
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
           
         </div>
       </div>
@@ -166,24 +215,86 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center tagcloud">
-  <a href="/tags/Collectors/" style="font-size: 15px; color: #bbe">Collectors</a> <a href="/tags/hashmap/" style="font-size: 15px; color: #bbe">hashmap</a> <a href="/tags/html2canvas/" style="font-size: 15px; color: #bbe">html2canvas</a> <a href="/tags/java/" style="font-size: 30px; color: #337ab7">java</a> <a href="/tags/lemon%E6%AD%8C%E8%AF%8D/" style="font-size: 15px; color: #bbe">lemon歌词</a> <a href="/tags/stream/" style="font-size: 15px; color: #bbe">stream</a> <a href="/tags/web/" style="font-size: 15px; color: #bbe">web</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 30px; color: #337ab7">前端</a> <a href="/tags/%E6%97%A5%E8%AF%AD/" style="font-size: 15px; color: #bbe">日语</a>
-</div>
-
-              </div>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">关于视频通话截图</h1>
+            
+            <div class="markdown-body">
+              <p>最近有个需求需要截取视频通话的客户界面传给后台做业务处理，百度了一下最多的都是html2canvas。</p>
+<p>html2canvas  其实是遍历dom元素 将html内容渲染成canvas图片。</p>
+<p>当我选取video标签时发现 渲染出来的只有一张白色的图片，才知道视频并不能直接渲染成图片。百度一番，发现解决方案都是将视频当前帧渲染成canvas图片，直接上代码吧。</p>
+<figure class="highlight javascript"><figcaption><span>[] [] [url] [link text] [additional options]</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs javaScript"><span class="hljs-comment">//将视频通话当前帧画入canvas画布</span><br><span class="hljs-keyword">let</span> video = $(<span class="hljs-string">"#remote_stream"</span>).find(<span class="hljs-string">"video"</span>)[<span class="hljs-number">0</span>];<br>			video.style.backgroundImage = <span class="hljs-string">""</span>;<br>			<span class="hljs-keyword">if</span> (video.style.backgroundImage == <span class="hljs-string">""</span>) &#123;<br>				<span class="hljs-keyword">let</span> width = $(video).width();<br>				<span class="hljs-keyword">let</span> height = $(video).height();<br>				$(video).after(<span class="hljs-string">'&lt;canvas width="'</span> + width + <span class="hljs-string">'" height="'</span> + height + <span class="hljs-string">'"&gt;&lt;/canvas&gt;'</span>);<br>				<span class="hljs-keyword">let</span> canvas = $(video).next(<span class="hljs-string">'canvas'</span>).css(&#123;<br>					display: <span class="hljs-string">'none'</span><br>				&#125;);<br>				<span class="hljs-keyword">let</span> ctx = canvas.get(<span class="hljs-number">0</span>).getContext(<span class="hljs-string">'2d'</span>);<br>				ctx.drawImage(video, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, width, height);<br>				<span class="hljs-keyword">try</span> &#123;<br>					video.style.backgroundImage = <span class="hljs-string">"url("</span> + canvas.get(<span class="hljs-number">0</span>).toDataURL(<span class="hljs-string">'image/png'</span>) + <span class="hljs-string">")"</span>;<br>				&#125; <span class="hljs-keyword">catch</span> (e) &#123;<br>					<span class="hljs-built_in">console</span>.log(e)<br>				&#125; <span class="hljs-keyword">finally</span> &#123;<br>					canvas.remove();<br>				&#125;<br>			&#125;<br>			<span class="hljs-comment">//html2canvas根据video标签渲染截图</span><br>			html2canvas($(<span class="hljs-string">"#remote_stream"</span>).find(<span class="hljs-string">"video"</span>)[<span class="hljs-number">0</span>]).then(<span class="hljs-function"><span class="hljs-params">canvas</span> =&gt;</span> &#123;<br>				base64Str = canvas.toDataURL(<span class="hljs-string">'image/jpeg'</span>, <span class="hljs-number">1.0</span>);<br>			&#125;);<br></code></pre></td></tr></table></figure>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                      <a class="hover-with-bg" href="/tags/html2canvas/">html2canvas</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/04/29/%E5%85%B3%E4%BA%8EHashMap%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AE%B9%E9%87%8F%E9%97%AE%E9%A2%98/">
+                        <span class="hidden-mobile">关于HashMap初始化容量问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -263,9 +374,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.2/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 
