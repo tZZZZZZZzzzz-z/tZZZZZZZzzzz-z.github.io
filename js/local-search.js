@@ -35,11 +35,11 @@ var searchFunc = function(path, search_id, content_id) {
     dataType: 'xml',
     success : function(xmlResponse) {
       // 0x02. parse xml file
-      var dataList = jQuery('entry', xmlResponse).map(function() {
+      var dataList = $('entry', xmlResponse).map(function() {
         return {
-          title  : jQuery('title', this).text(),
-          content: jQuery('content', this).text(),
-          url    : jQuery('url', this).text()
+          title  : $('title', this).text(),
+          content: $('content', this).text(),
+          url    : $('url', this).text()
         };
       }).get();
 
@@ -123,7 +123,7 @@ var searchFunc = function(path, search_id, content_id) {
             }
           }
         });
-        const input = jQuery('#local-search-input');
+        const input = $('#local-search-input');
         if (str.indexOf('list-group-item') === -1) {
           return input.addClass('invalid').removeClass('valid');
         }
@@ -133,8 +133,8 @@ var searchFunc = function(path, search_id, content_id) {
     }
   });
 
-  jQuery('#local-search-close').on('click', function() {
-    jQuery('#local-search-input').val('').removeClass('invalid').removeClass('valid');
-    jQuery('#local-search-result').html('');
+  $('#local-search-close').on('click', function() {
+    $('#local-search-input').val('').removeClass('invalid').removeClass('valid');
+    $('#local-search-result').html('');
   });
 };

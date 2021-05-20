@@ -25,16 +25,16 @@ Fluid.plugins = {
     if (subtitle) {
       subtitle.innerText = '';
     }
-    jQuery(document).ready(function() {
-      jQuery('.typed-cursor').addClass('h2');
+    $(document).ready(function() {
+      $('.typed-cursor').addClass('h2');
       typed.start();
     });
   },
 
   initTocBot: function() {
-    var toc = jQuery('#toc');
+    var toc = $('#toc');
     if (toc.length === 0 || !window.tocbot) { return; }
-    var boardCtn = jQuery('#board-ctn');
+    var boardCtn = $('#board-ctn');
     var boardTop = boardCtn.offset().top;
 
     window.tocbot.init({
@@ -50,7 +50,7 @@ Fluid.plugins = {
       scrollSmooth    : true,
       headingsOffset  : -boardTop
     });
-    if (jQuery('.toc-list-item').length > 0) {
+    if ($('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
   },
@@ -58,8 +58,8 @@ Fluid.plugins = {
   initFancyBox: function() {
     if (!$.fancybox) { return; }
 
-    jQuery('.markdown-body :not(a) > img, .markdown-body > img').each(function() {
-      var $image = jQuery(this);
+    $('.markdown-body :not(a) > img, .markdown-body > img').each(function() {
+      var $image = $(this);
       var imageUrl = $image.attr('data-src') || $image.attr('src') || '';
       if (CONFIG.image_zoom.img_url_replace) {
         var rep = CONFIG.image_zoom.img_url_replace;
@@ -93,7 +93,7 @@ Fluid.plugins = {
     });
 
     $.fancybox.defaults.hash = false;
-    jQuery('.fancybox').fancybox({
+    $('.fancybox').fancybox({
       loop   : true,
       helpers: {
         overlay: {
@@ -137,9 +137,9 @@ Fluid.plugins = {
     copyHtml += '<button class="copy-btn" data-clipboard-snippet="">';
     copyHtml += '<i class="iconfont icon-copy"></i><span>Copy</span>';
     copyHtml += '</button>';
-    var blockElement = jQuery('.markdown-body pre');
+    var blockElement = $('.markdown-body pre');
     blockElement.each(function() {
-      const pre = jQuery(this);
+      const pre = $(this);
       if (pre.find('code.mermaid').length > 0) {
         return;
       }
@@ -153,7 +153,7 @@ Fluid.plugins = {
         return trigger.previousElementSibling;
       }
     });
-    jQuery('.copy-btn').addClass(getBgClass(blockElement));
+    $('.copy-btn').addClass(getBgClass(blockElement));
     clipboard.on('success', function(e) {
       e.clearSelection();
       var tmp = e.trigger.outerHTML;
